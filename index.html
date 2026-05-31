@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🌸 Just For You 🌸</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    overflow:hidden;
+    background:linear-gradient(-45deg,#ff9a9e,#fad0c4,#ffd1ff,#a18cd1);
+    background-size:400% 400%;
+    animation:bg 10s ease infinite;
+}
+
+@keyframes bg{
+    0%{background-position:0% 50%;}
+    50%{background-position:100% 50%;}
+    100%{background-position:0% 50%;}
+}
+
+.card{
+    width:90%;
+    max-width:750px;
+    padding:40px;
+    text-align:center;
+    border-radius:25px;
+    background:rgba(255,255,255,0.15);
+    backdrop-filter:blur(15px);
+    color:white;
+    box-shadow:0 8px 30px rgba(0,0,0,0.2);
+    z-index:10;
+}
+
+h1{
+    margin-bottom:20px;
+    font-size:2.5rem;
+}
+
+#text{
+    font-size:1.2rem;
+    line-height:2;
+    min-height:300px;
+    white-space:pre-line;
+}
+
+button{
+    margin-top:25px;
+    padding:12px 30px;
+    border:none;
+    border-radius:50px;
+    background:white;
+    color:#ff4f81;
+    font-size:1rem;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+button:hover{
+    transform:scale(1.08);
+}
+
+.heart{
+    position:absolute;
+    color:white;
+    font-size:20px;
+    animation:float linear infinite;
+    opacity:0.8;
+}
+
+@keyframes float{
+    from{
+        transform:translateY(100vh);
+        opacity:0;
+    }
+    20%{
+        opacity:1;
+    }
+    to{
+        transform:translateY(-120px);
+        opacity:0;
+    }
+}
+</style>
+</head>
+<body>
+
+<div class="card">
+    <h1>🌸 सिर्फ तुम्हारे लिए 🌸</h1>
+
+    <div id="text"></div>
+
+    <button onclick="startMessage()">💖 क्लिक करो 💖</button>
+</div>
+
+<script>
+
+const message = `
+
+पता है...
+
+दुनिया में बहुत लोग मिलते हैं,
+लेकिन कुछ लोग ऐसे होते हैं
+जिनसे बात करके मन अच्छा हो जाता है।
+
+तुम उन्हीं लोगों में से एक हो। ✨
+
+तुम्हारी मुस्कान में कुछ तो बात है,
+जो बिना वजह भी मुस्कुरा देती है। 😊
+
+तुम्हारी बातें,
+तुम्हारी सादगी,
+और तुम्हारा अंदाज़...
+
+सब कुछ बहुत प्यारा है। 🌷
+
+बस इतना कहना था कि—
+
+तुम सच में बहुत खास हो। ❤️
+
+और हाँ...
+
+हमेशा ऐसे ही मुस्कुराती रहना,
+क्योंकि तुम्हारी मुस्कान दुनिया को
+थोड़ा और खूबसूरत बना देती है। ✨🌸
+
+💖
+`;
+
+function startMessage(){
+    let i = 0;
+    document.getElementById("text").innerHTML = "";
+
+    const typing = setInterval(() => {
+        document.getElementById("text").innerHTML += message.charAt(i);
+        i++;
+
+        if(i >= message.length){
+            clearInterval(typing);
+        }
+    }, 45);
+}
+
+// Floating Hearts
+for(let i=0;i<40;i++){
+    let heart = document.createElement("div");
+    heart.className = "heart";
+
+    const emojis = ["❤️","🌸","🦋","✨"];
+    heart.innerHTML = emojis[Math.floor(Math.random()*emojis.length)];
+
+    heart.style.left = Math.random()*100 + "vw";
+    heart.style.fontSize = (15 + Math.random()*25) + "px";
+    heart.style.animationDuration = (6 + Math.random()*8) + "s";
+    heart.style.animationDelay = Math.random()*5 + "s";
+
+    document.body.appendChild(heart);
+}
+</script>
+
+</body>
+</html>
